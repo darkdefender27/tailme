@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+
+{% block tail_log %}
+
+    <b>Tailing Log: </b>
+    <div id="tailedLogFile">
+        {{ log_selected }}
+    </div>
+    <button id="tail" class="btn btn btn-primary" type="submit">Begin</button>
+
+    <!-- Append tailed log data -->
+    <p class="log-area" id="logArea">
+    </p>
+
+    <!-- <script type="text/javascript">
+        $(document).ready(function() {
+            var namespace = '/tailme';
+            var url = 'http://' + document.domain + ':' + location.port;
+            var socket = io.connect(url + namespace);
+            $('#tail').click(function() {
+                var tailLog = $.trim($('#tailedLogFile').text());
+                socket.emit('taillogs', {'tailedLogFile': tailLog});
+            });
+            socket.on('newtaildata', function(msg) {
+                console.log('Hey!')
+                $("#logArea").append("Samsung" + ' <br/>');
+            });
+        });
+    </script> -->
+
+{% endblock %}

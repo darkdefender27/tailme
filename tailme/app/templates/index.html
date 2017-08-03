@@ -1,0 +1,49 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <br>
+    <h4>Choose a log file to tail...</h4>
+    <br>
+
+    <form name="tail-log-file" action="taillog" method="post">
+        <select class="form-control" name="selected_log">
+            {% for log in logs %}
+                <option value="{{ log }}">{{ log }}</option>
+            {% endfor %}
+        </select>
+        <br/>
+        <button id="tail" class="btn btn btn-primary" type="submit">Tail</button>
+    </form>
+
+    <br/>
+
+    <b>Tailing Log: </b>
+    <!-- Append tailed log data -->
+    <p class="log-area" id="logArea">
+    </p>
+
+    <script type="text/javascript">
+
+        var namespace = '/tailme';
+        var ws = new WebSocket("ws://" + document.domain + ":" + location.port + namespace);
+
+        ws.onopen = function() {
+           ws.send("socket open");
+        };
+
+        ws.onclose = function(evt) {
+           alert("socket closed");
+        };
+
+        ws.onmessage = function(evt) {
+            console.log('Hey!! ' + evt.data);
+            $("#logArea").append("Samsung" + ' <br/>');
+        };
+
+        // socket.on('newtaildata', function(msg) {
+        //     console.log('Hey!! ' + msg);
+        //     $("#logArea").append("Samsung" + ' <br/>');
+        // });
+    </script>
+
+{% endblock %}
