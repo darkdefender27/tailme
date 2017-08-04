@@ -42,7 +42,7 @@ $ cd /path/to/tailme
 - Install pre-requisites using the command ::
 
 ```sh
-$ pip install -r Requirement.txt
+$ pip install -r Requirements.txt
 ```
   or you can also type ::
 
